@@ -1,12 +1,10 @@
 // etch-a-sketch.js
 const container = document.getElementById('container');
 const resetButton = document.getElementById('reset');
+const colorPicker = document.getElementById('colorPicker');
 let squaresPerSide = 16; // Default number of squares per side
 
-// Generate a base RGB color
-let baseR = Math.floor(Math.random() * 256);
-let baseG = Math.floor(Math.random() * 256);
-let baseB = Math.floor(Math.random() * 256);
+
 
 function createGrid() {
     // Clear the container
@@ -23,9 +21,13 @@ function createGrid() {
         // Set the width and height of the square
         div.style.width = `${squareSize}px`;
         div.style.height = `${squareSize}px`;
+        // Generate a base RGB color
+        let baseR = Math.floor(Math.random() * 256);
+        let baseG = Math.floor(Math.random() * 256);
+        let baseB = Math.floor(Math.random() * 256);
         // Add a mouseover event listener to the square
         div.addEventListener('mouseover', function() {
-            // Get the current opacity
+            // Get the current opacity, 0 initially
             let currentOpacity = parseFloat(this.getAttribute('data-opacity')) || 0;
             // Decrease the opacity by 10%
             currentOpacity = Math.max(currentOpacity + 0.1, 0);
@@ -51,10 +53,6 @@ resetButton.addEventListener('click', function() {
     }
     // Validate the input
     squaresPerSide = Math.min(Math.max(parseInt(userInput), 1), 100);
-    // Generate a new base RGB color
-    baseR = Math.floor(Math.random() * 256);
-    baseG = Math.floor(Math.random() * 256);
-    baseB = Math.floor(Math.random() * 256);
     createGrid();
 });
 
