@@ -1,7 +1,7 @@
 // etch-a-sketch.js
 const container = document.getElementById('container');
 const resetButton = document.getElementById('reset');
-const colorPicker = document.getElementById('colorPicker');
+const grid = document.getElementById('grid');
 let squaresPerSide = 16; // Default number of squares per side
 
 
@@ -9,6 +9,7 @@ let squaresPerSide = 16; // Default number of squares per side
 function createGrid() {
     // Clear the container
     container.innerHTML = '';
+    grid.textContent = `${squaresPerSide}x${squaresPerSide}`;
 
     // Calculate the width and height of each square
     const squareSize = container.offsetWidth / squaresPerSide;
@@ -43,7 +44,7 @@ function createGrid() {
 
 resetButton.addEventListener('click', function() {
     // Prompt the user for the number of squares per side
-    const userInput = prompt('Enter the number of squares per side for the new grid (max 100):');
+    const userInput = prompt('Enter the number of squares per side (max 50):');
     // If the user didn't enter a value, return early
     if (userInput === null || userInput === '') return;
     // if 0 or negative number is entered, prompt again
@@ -52,7 +53,7 @@ resetButton.addEventListener('click', function() {
         return;
     }
     // Validate the input
-    squaresPerSide = Math.min(Math.max(parseInt(userInput), 1), 100);
+    squaresPerSide = Math.min(Math.max(parseInt(userInput), 1), 50);
     createGrid();
 });
 
