@@ -13,6 +13,21 @@ function createGrid() {
 
     // Calculate the width and height of each square
     const squareSize = container.offsetWidth / squaresPerSide;
+    // Generate a base RGB color
+    let baseR = Math.floor(Math.random() * 256);
+    let baseG = Math.floor(Math.random() * 256);
+    let baseB = Math.floor(Math.random() * 256);
+
+    function handleHover() {
+        // Get the current opacity, 0 initially
+        let currentOpacity = parseFloat(this.getAttribute('data-opacity')) || 0;
+        // Decrease the opacity by 10%
+        currentOpacity = Math.max(currentOpacity + 0.1, 0);
+        // Update the opacity attribute
+        this.setAttribute('data-opacity', currentOpacity);
+        // Set the background color of the square
+        this.style.backgroundColor = `rgba(${baseR}, ${baseG}, ${baseB}, ${currentOpacity})`;
+    }
 
     for (let i = 0; i < squaresPerSide * squaresPerSide; i++) {
         // Create a new square div
@@ -22,21 +37,11 @@ function createGrid() {
         // Set the width and height of the square
         div.style.width = `${squareSize}px`;
         div.style.height = `${squareSize}px`;
-        // Generate a base RGB color
-        let baseR = Math.floor(Math.random() * 256);
-        let baseG = Math.floor(Math.random() * 256);
-        let baseB = Math.floor(Math.random() * 256);
+        
         // Add a mouseover event listener to the square
-        div.addEventListener('mouseover', function() {
-            // Get the current opacity, 0 initially
-            let currentOpacity = parseFloat(this.getAttribute('data-opacity')) || 0;
-            // Decrease the opacity by 10%
-            currentOpacity = Math.max(currentOpacity + 0.1, 0);
-            // Update the opacity attribute
-            this.setAttribute('data-opacity', currentOpacity);
-            // Set the background color of the square
-            this.style.backgroundColor = `rgba(${baseR}, ${baseG}, ${baseB}, ${currentOpacity})`;
-        });
+        div.addEventListener('mouseover', handleHover);
+        // Add a touchmove event listener to the square
+        div.addEventListener('touchmove', handleHover);
         // Append the square to the container
         container.appendChild(div);
     }
