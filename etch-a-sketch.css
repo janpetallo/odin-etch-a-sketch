@@ -5,7 +5,7 @@ body {
     justify-content: center;
     height: 100vh;
     margin: 0;
-    background-color: #f0f0f0;
+    background-color: #bafdbc;
     font-family: Arial, sans-serif;
 }
 
@@ -16,6 +16,7 @@ body {
     height: 720px;
     flex-direction: row;
     justify-content: center;
+    background-color: #ddf6de
 }
 
 .square {
