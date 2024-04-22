@@ -11,8 +11,8 @@ body {
 #container {
     display: flex;
     flex-wrap: wrap;
-    width: 720px; 
-    height: 720px;
+    width: 520px; 
+    height: 520px;
     flex-direction: row;
     justify-content: center;
     background-color: #ddf6de
