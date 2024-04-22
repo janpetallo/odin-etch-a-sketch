@@ -1,7 +1,9 @@
 #container {
     display: flex;
     flex-wrap: wrap;
-    width: 960px; 
+    width: 720px; 
+    height: 720px;
+    flex-direction: row;
 }
 
 .square {

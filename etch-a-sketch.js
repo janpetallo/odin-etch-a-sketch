@@ -3,6 +3,11 @@ const container = document.getElementById('container');
 const resetButton = document.getElementById('reset');
 let squaresPerSide = 16; // Default number of squares per side
 
+// Generate a base RGB color
+let baseR = Math.floor(Math.random() * 256);
+let baseG = Math.floor(Math.random() * 256);
+let baseB = Math.floor(Math.random() * 256);
+
 function createGrid() {
     // Clear the container
     container.innerHTML = '';
@@ -20,12 +25,12 @@ function createGrid() {
         div.style.height = `${squareSize}px`;
         // Add a mouseover event listener to the square
         div.addEventListener('mouseover', function() {
-            // Generate a random RGB color
-            const r = Math.floor(Math.random() * 256);
-            const g = Math.floor(Math.random() * 256);
-            const b = Math.floor(Math.random() * 256);
+            // Modify the base RGB color slightly
+            const r = Math.max(Math.min(baseR + Math.floor(Math.random() * 50 - 25), 255), 0);
+            const g = Math.max(Math.min(baseG + Math.floor(Math.random() * 50 - 25), 255), 0);
+            const b = Math.max(Math.min(baseB + Math.floor(Math.random() * 50 - 25), 255), 0);
             // Set the background color of the square
-            div.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+            this.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
         });
         // Append the square to the container
         container.appendChild(div);
@@ -44,6 +49,10 @@ resetButton.addEventListener('click', function() {
     }
     // Validate the input
     squaresPerSide = Math.min(Math.max(parseInt(userInput), 1), 100);
+    // Generate a new base RGB color
+    baseR = Math.floor(Math.random() * 256);
+    baseG = Math.floor(Math.random() * 256);
+    baseB = Math.floor(Math.random() * 256);
     createGrid();
 });
 
