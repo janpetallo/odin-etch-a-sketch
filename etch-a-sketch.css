@@ -15,7 +15,8 @@ body {
     height: 520px;
     flex-direction: row;
     justify-content: center;
-    background-color: #ddf6de
+    background-color: #ddf6de;
+    margin-bottom: 50px;
 }
 
 .square {
