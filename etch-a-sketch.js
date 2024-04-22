@@ -20,7 +20,12 @@ function createGrid() {
         div.style.height = `${squareSize}px`;
         // Add a mouseover event listener to the square
         div.addEventListener('mouseover', function() {
-            this.style.backgroundColor = 'black';
+            // Generate a random RGB color
+            const r = Math.floor(Math.random() * 256);
+            const g = Math.floor(Math.random() * 256);
+            const b = Math.floor(Math.random() * 256);
+            // Set the background color of the square
+            div.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
         });
         // Append the square to the container
         container.appendChild(div);
@@ -32,6 +37,11 @@ resetButton.addEventListener('click', function() {
     const userInput = prompt('Enter the number of squares per side for the new grid (max 100):');
     // If the user didn't enter a value, return early
     if (userInput === null || userInput === '') return;
+    // if 0 or negative number is entered, prompt again
+    if (parseInt(userInput) <= 0) {
+        alert('Please enter a positive number.');
+        return;
+    }
     // Validate the input
     squaresPerSide = Math.min(Math.max(parseInt(userInput), 1), 100);
     createGrid();
