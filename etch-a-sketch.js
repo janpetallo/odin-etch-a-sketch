@@ -25,12 +25,14 @@ function createGrid() {
         div.style.height = `${squareSize}px`;
         // Add a mouseover event listener to the square
         div.addEventListener('mouseover', function() {
-            // Modify the base RGB color slightly
-            const r = Math.max(Math.min(baseR + Math.floor(Math.random() * 50 - 25), 255), 0);
-            const g = Math.max(Math.min(baseG + Math.floor(Math.random() * 50 - 25), 255), 0);
-            const b = Math.max(Math.min(baseB + Math.floor(Math.random() * 50 - 25), 255), 0);
+            // Get the current opacity
+            let currentOpacity = parseFloat(this.getAttribute('data-opacity')) || 0;
+            // Decrease the opacity by 10%
+            currentOpacity = Math.max(currentOpacity + 0.1, 0);
+            // Update the opacity attribute
+            this.setAttribute('data-opacity', currentOpacity);
             // Set the background color of the square
-            this.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+            this.style.backgroundColor = `rgba(${baseR}, ${baseG}, ${baseB}, ${currentOpacity})`;
         });
         // Append the square to the container
         container.appendChild(div);
